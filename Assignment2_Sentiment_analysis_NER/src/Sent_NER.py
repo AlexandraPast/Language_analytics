@@ -74,7 +74,7 @@ def get_Blob_scores (list):
 def sentiment_plot (sentence_type, Spacy_scores, Vader_scores):
     # make a plot using VADER and Blob scores from two lists with shared grid for easy comparison
     fig, (ax1, ax2) = plt.subplots(1, 2, sharex=True, sharey=True, figsize=(10,4))
-    fig.suptitle('Sentiment scores for the' +sentence_type+ 'sentences', fontsize = 15, color = (0.2, 0.4, 0.9, 1.0), fontweight = 'normal')
+    fig.suptitle('Sentiment scores for the ' +sentence_type+ ' sentences', fontsize = 15, color = (0.2, 0.4, 0.9, 1.0), fontweight = 'normal')
     ax1.plot(Spacy_scores)
     ax2.plot(Vader_scores)
     ax1.set(ylabel="Polarity score")
