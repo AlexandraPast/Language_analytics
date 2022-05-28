@@ -171,7 +171,7 @@ def main():
     
     # create and save confusion matrix
     cm = pd.DataFrame(confusion_matrix(real, pred), index=labels, columns=labels)
-    cm
+    
     cm.to_csv('out/tables/' + args.Cfm + '.csv')
     
     # create and save plot of confusion matrix because they are pretty and easily readable!
@@ -182,6 +182,8 @@ def main():
     dictionary = {'text': data['text'], 'real_label': real, 'pred_label': pred, 'percentage': [row[1] for row in scores]}  
     dataframe = pd.DataFrame(dictionary) 
     dataframe.to_csv('out/tables/' + args.Df + '.csv', index=False)
+    
+    print('------All done!------')
     
 #--------------------------------------------------------------------------------------#
 
