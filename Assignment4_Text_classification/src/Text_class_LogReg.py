@@ -16,6 +16,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import ShuffleSplit
 from sklearn import metrics
+from sklearn.metrics import (confusion_matrix,
+                             ConfusionMatrixDisplay)
 
 # Visualisation
 import matplotlib.pyplot as plt
@@ -49,25 +51,37 @@ def main():
     my_parser.add_argument('-Perf_plot',
                            metavar = 'performance plot',
                            type = str,
-                           default = "performance_plot_logReg",
+                           default = "LogReg_performance",
                            help = 'input your desired name for performance plot')
+    
+    my_parser.add_argument('-Cfm',
+                           metavar = 'confusion matrix name',
+                           type = str,
+                           default = "LogReg_cfm",
+                           help = 'input your desired name for the confusion matrix')    
+    
+    my_parser.add_argument('-Cfm_plot',
+                           metavar = 'confusion matrix plot name',
+                           type = str,
+                           default = "LogReg_cfm",
+                           help = 'input your desired name for the confusion matrix plot')
     
     my_parser.add_argument('-Report',
                            metavar = 'classification report name',
                            type = str,
-                           default = "class_rep_logReg",
+                           default = "LogReg_report",
                            help = 'input your desired name for the classification report')
     
     #Execute parse_args()
     args = my_parser.parse_args()
     
-    print('***************************************************************************')
+    print("-----------------------------------------------------------------------------")
     #print values of arguments for the user to check
     vals = vars(args)
     for k, v in vals.items():
         print(f'{k:<4}: {v}')
      
-    print('***************************************************************************')
+    print("-----------------------------------------------------------------------------")
     
     #load data
     filename = os.path.join(args.Dir + args.File)
@@ -139,6 +153,16 @@ def main():
     #assessing model performance
     clf.plot_cm(y_test, y_pred, normalized=True)
     plt.savefig('out/plots/'+ args.Perf_plot +'.png', dpi=75)
+    
+    labels = ['negative', 'positive']
+    #save confusion matrix table
+    df = pd.DataFrame(confusion_matrix(y_test, y_pred), 
+                      index=labels, columns=labels)
+    df.to_csv('out/tables/'+ args.Cfm +'.csv')
+    
+    #save confusion matrix plot
+    ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
+    plt.savefig('out/plots/' + args.Cfm_plot + '.png', dpi=75)
 
     #classification report
     print("-----------------------------------------------------------------------------")
@@ -162,6 +186,9 @@ def main():
 
     estimator = LogisticRegression(random_state=42)
     clf.plot_learning_curve(estimator, title, X_vect, y, cv=cv, n_jobs=4)
+    
+    print('---Results and plots saved')
+    print('---All done!---')
     
 ##-----------------------------------------------------------------------------##
 ##-----------------------------------------------------------------------------##
