@@ -1,6 +1,6 @@
 # Assignment 1 - Collocation tool
 
-The files here are part of the repository for my course in Visual analytics.
+The files here are part of the repository for my course in Language analytics.
 
 ## 1. Contribution
 I worked on this code alone. 
