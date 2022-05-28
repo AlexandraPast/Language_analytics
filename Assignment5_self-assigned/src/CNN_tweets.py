@@ -365,6 +365,8 @@ def main():
     ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
     plt.savefig('out/plots/' + args.Cfm_plot + '.png', dpi=75)
     
+    print('------All done!------')
+    
 #--------------------------------------------------------------------------------------#
 
 if __name__ == '__main__':
