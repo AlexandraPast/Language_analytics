@@ -33,7 +33,8 @@ from tensorflow.keras.regularizers import L2
 # scikit-learn
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import (confusion_matrix, 
-                            classification_report)
+                             classification_report,
+                             ConfusionMatrixDisplay)
 from sklearn.preprocessing import LabelBinarizer, LabelEncoder
 
 # visualisations 
@@ -81,6 +82,30 @@ def pre_process_corpus(docs):
   
     return norm_docs
 
+def plot_history(H, epochs, plotname):
+    plt.style.use("seaborn-colorblind")
+
+    plt.figure(figsize=(12,6))
+    plt.subplot(1,2,1)
+    plt.plot(np.arange(0, epochs), H.history["loss"], label='Training loss (' + str(str(format(H.history["loss"][-1],'.5f'))+')'))
+    plt.plot(np.arange(0, epochs), H.history["val_loss"], label='Validation loss (' + str(str(format(H.history["val_loss"][-1],'.5f'))+')'), linestyle=":")
+    plt.title("Loss curve")
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.tight_layout()
+    plt.legend()
+
+    plt.subplot(1,2,2)
+    plt.plot(np.arange(0, epochs), H.history["accuracy"], label='Training accuracy (' + str(format(H.history["accuracy"][-1],'.5f'))+')')
+    plt.plot(np.arange(0, epochs), H.history["val_accuracy"], label='Validation accuracy (' + str(format(H.history["val_accuracy"][-1],'.5f'))+')', linestyle=":")
+    plt.title("Accuracy curve")
+    plt.xlabel("Epoch")
+    plt.ylabel("Accuracy")
+    plt.tight_layout()
+    plt.legend()
+    plt.savefig("out/plots/"+ plotname +".png")
+    plt.show()
+
 ##-----------------------------------------------------------------------------##
 ##-----------------------------------------------------------------------------##
 
@@ -103,14 +128,26 @@ def main():
     my_parser.add_argument('-Report',
                            metavar = 'report name for CNN model Keras',
                            type = str,
-                           default = "class_rep_CNN",
-                           help = 'input your desired name for performance plot')
+                           default = "CNN_report",
+                           help = 'input your desired name for the classification report')
     
-    my_parser.add_argument('-Conf_mat',
+    my_parser.add_argument('-Cfm',
                            metavar = 'confusion matrix name',
                            type = str,
-                           default = "confusion_matrix_CNN",
-                           help = 'input your desired name for the classification report')
+                           default = "CNN_cfm",
+                           help = 'input your desired name for the confusion matrix')
+    
+    my_parser.add_argument('-Cfm_plot',
+                           metavar = 'confusion matrix plot name',
+                           type = str,
+                           default = "CNN_cfm",
+                           help = 'input your desired name for the confusion matrix plot')
+    
+    my_parser.add_argument('-LA_plot',
+                           metavar = 'loss accuracy plot',
+                           type = str,
+                           default = "CNN_loss_acc",
+                           help = 'input your desired name for loss and accuracy plot')
     
     #Execute parse_args()
     args = my_parser.parse_args()
@@ -238,12 +275,15 @@ def main():
     model.summary()
 
     #Train
-    model.fit(X_train_pad, y_train,
-            epochs = EPOCHS,
-            batch_size = BATCH_SIZE,
-            validation_split = 0.1,
-            verbose = True)
+    history = model.fit(X_train_pad, y_train,
+              epochs = EPOCHS,
+              batch_size = BATCH_SIZE,
+              validation_split = 0.1,
+              verbose = True)
 
+    # Plot and save training loss and accuracy plot
+    plot_history(history, EPOCHS, args.LA_plot)
+    
     #Evaluate
     #Final evaluation of the model
     scores = model.evaluate(X_test_pad, y_test, verbose=1)
@@ -266,9 +306,17 @@ def main():
     with open("out/tables/"+ args.Report +".txt","w") as file:  # Use file to refer to the file object
         file.write(report)
 
+    #save confusion matrix table
     df = pd.DataFrame(confusion_matrix(y_test, y_pred), 
                       index=labels, columns=labels)
-    df.to_csv('out/tables/'+ args.Conf_mat +'.csv')
+    df.to_csv('out/tables/'+ args.Cfm +'.csv')
+    
+    #save confusion matrix plot
+    ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
+    plt.savefig('out/plots/' + args.Cfm_plot + '.png', dpi=75)
+    
+    print('---Results and plots saved')
+    print('---All done!---')
 
 ##-----------------------------------------------------------------------------##
 ##-----------------------------------------------------------------------------##
