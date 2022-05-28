@@ -68,7 +68,7 @@ The script runs with pre-set variables which can also be changed by the user.
    - `bash setup.sh` - install libraries
    - `python ../src/col_tool.py green` - run script with the searched term (this will analyse all txt files inside 'in' folder)
    - `python ../src/col_tool.py green -window 2` - specified window argument
-   - `python ../src/col_tool.py green -Path C:/user/file/file/Assignment1_Collocation_tool/in/yourfile.txt` - if you specifically want to analyse only this one file and not other files present in the folder (you can also input the path as this `in/yourfile.txt` if you set you working directory before)
+   - `python ../src/col_tool.py green -Path C:/user/file/file/Assignment1_Collocation_tool/in/yourfile.txt` - if you specifically want to analyse only this one file and not other files present in the folder (you can also input the path like so `in/yourfile.txt` if you set you working directory before)
    - `python ../src/col_tool.py green -Path C:/user/file/file/folder/` - if you wish to analyse all files in any other directory than 'in'
    - `python  ../src/col_tool.py -h` (or `--help`) - for help and explanations
 
