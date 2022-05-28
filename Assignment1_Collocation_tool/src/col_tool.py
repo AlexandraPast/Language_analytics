@@ -127,15 +127,15 @@ def main():
     
     
     my_parser.add_argument('Key',
-                       metavar = 'Keyword',
-                       type = str,
-                       help = 'input keyword to be searched')
+                           metavar = 'Keyword',
+                           type = str,
+                           help = 'input keyword to be searched')
 
     my_parser.add_argument('-Path',
                            metavar = 'Path to the text',
                            type = str,
                            default = "in/",
-                           help = 'input path to the folder or file if data is not inside "in" folder')
+                           help = 'input path to the folder or file (if data is in "in", it is not necessary, only if one specific file is to be analysed')
     
     my_parser.add_argument('-Window',
                            metavar = 'Window size',
@@ -236,9 +236,6 @@ def main():
 
     # convert `an_object` to a string.
     doc_string = str(doc) 
-
-    #print('--------------------------------------------------------------------------')
-    #print('------Extracted collocates within window size:')
     
     # extracting collocate words
     extract_surround_words(text2 = doc_string, keyword = keyword, n = n, lst = lst)
