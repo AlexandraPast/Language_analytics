@@ -177,12 +177,12 @@ def main():
     print("-----------------------------------------------------------------------------")
 
     #balance function
-    data_balanced = clf.balance(data, 1000)
+    data_balanced = clf.balance(data, 1300)
 
     #var X and y for training and testing 
-    X = data["text"]
-    y = data["label"]
-    data["label"].value_counts()
+    X = data_balanced["text"]
+    y = data_balanced["label"]
+    data_balanced["label"].value_counts()
 
     #scikit-learn train-test split function
     X_train, X_test, y_train, y_test = train_test_split(X,           
