@@ -26,11 +26,11 @@ For the second approach, I created a CNN with an embedding layer, 3 convolutiona
   - Data used: https://www.simula.no/sites/default/files/publications/files/cbmi2019_youtube_threat_corpus.pdf
 - **out**: a folder containing the output of the script.
   - **Plots**: 
-   - LogReg confusion matrix plot, LogReg Performance plot, cross-validation plot for Logistic regression
-   - CNN confusion matrix plot, CNN loss and accuracy plot
+    - LogReg confusion matrix plot, LogReg Performance plot, cross-validation plot for Logistic regression
+    - CNN confusion matrix plot, CNN loss and accuracy plot
   - **Tables**:
-   - LogReg confusion matrix, LogReg Classification report
-   - CNN confusion matrix, CNN Classification report
+    - LogReg confusion matrix, LogReg Classification report
+    - CNN confusion matrix, CNN Classification report
 - **src**:
   - `Text_class_LogReg.py`: script for the LogisticRegression classifier
   - `Text_class_CNN.py `: script for the Convolutional neural network classifier
@@ -61,7 +61,9 @@ For the second approach, I created a CNN with an embedding layer, 3 convolutiona
 The script runs with pre-set variables which can also be changed by the user. 
 
 ### **`Text_class_LogReg.py`**
+
 **Required positional arguments:**
+
 - **File** (input for filename (the data) eg. VideoCommentsThreatCorpus.csv)
 
 **Default values of optional arguments:**
@@ -72,7 +74,9 @@ The script runs with pre-set variables which can also be changed by the user.
 - **-Report:** 'LogReg_report' (classification report name)
 
 ### **`Text_class_CNN.py`**
+
 **Required positional arguments:**
+
 - **File** (input for filename (the data) eg. VideoCommentsThreatCorpus.csv)
 
 **Default values of optional arguments:**
