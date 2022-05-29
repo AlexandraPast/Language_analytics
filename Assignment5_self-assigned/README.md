@@ -17,11 +17,11 @@ The second script represents a more complicated solution for a beginner in Pytho
   - Data used: (https://www.kaggle.com/datasets/yasserh/twitter-tweets-sentiment-dataset)
 - **out**: a folder containing the output of the script.
   - **Plots**: 
-   - Transformers confusion matrix plot
-   - CNN confusion matrix plot, CNN loss and accuracy plot
+    - Transformers confusion matrix plot
+    - CNN confusion matrix plot, CNN loss and accuracy plot
   - **Tables**:
-   - Transformers confusion matrix, Transformers Classification report, csv - data including the predictions and percentages
-   - CNN confusion matrix, CNN Classification report
+    - Transformers confusion matrix, Transformers Classification report, csv - data including the predictions and percentages
+    - CNN confusion matrix, CNN Classification report
 - **src**:
   - `Tr_tweets.py`: script for the Transformers analysis
   - `CNN_tweets.py `: script for the Convolutional neural network classifier
