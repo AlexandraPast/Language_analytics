@@ -102,7 +102,7 @@ def main():
     print("Label count")
     print(data["label"].value_counts()) #prints label counts for user to check
 
-    data_balanced = clf.balance(data, 1000) #balancing the data
+    data_balanced = clf.balance(data, 1300) #balancing the data
     
     print("-----------------------------------------------------------------------------")
     print("-----------------------------------------------------------------------------")
