@@ -233,7 +233,7 @@ def main():
     #number of dimensions for embeddings
     EMBED_SIZE = 300
     #number of epochs to train for
-    EPOCHS = 2
+    EPOCHS = 4
     # batch size for training
     BATCH_SIZE = 128
 
