@@ -54,11 +54,9 @@ The script runs with pre-set variables which can also be changed by the user.
 #### **`Tr_tweets.py`**
 
 **Required positional arguments:**
-
 - **File** (input for filename (the data) eg. Tweets.csv)
 
 **Default values of optional arguments:**
-
 - **-Dir:** `in/` (if data is elsewhere, input path to the directory)
 
 - **-Report:** 'Tr_report' (classification report name)
@@ -69,11 +67,9 @@ The script runs with pre-set variables which can also be changed by the user.
 #### **`CNN_tweets.py`**
 
 **Required positional arguments:**
-
 - **File** (input for filename (the data) eg. Tweets.csv)
 
 **Default values of optional arguments:**
-
 - **-Dir:** `in/` (if data is elsewhere, input path to the directory)
 - **-Batch:** 200 (Batch size)
 - **-Epochs:** 10
