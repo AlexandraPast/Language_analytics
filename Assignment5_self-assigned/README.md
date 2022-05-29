@@ -51,7 +51,7 @@ The second script represents a more complicated solution for a beginner in Pytho
 
 The script runs with pre-set variables which can also be changed by the user. 
 
-### **`Tr_tweets.py`**
+#### **`Tr_tweets.py`**
 **Required positional arguments:**
 - **File** (input for filename (the data) eg. Tweets.csv)
 
@@ -63,7 +63,7 @@ The script runs with pre-set variables which can also be changed by the user.
 - **-Cfm_plot:** 'Tr_cfm' (confusion matrix plot name)
 - **-Df:** 'Tr_Data_predicted' (csv including predictions name)
 
-### **`CNN_tweets.py`**
+#### **`CNN_tweets.py`**
 **Required positional arguments:**
 - **File** (input for filename (the data) eg. Tweets.csv)
 
